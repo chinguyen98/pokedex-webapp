@@ -1,10 +1,15 @@
 import React from 'react';
+
 import './css/App.css';
+
+import Navbar from './Navbar';
+import Searchbar from './Searchbar';
 
 function App() {
   return (
     <div className="App">
-      <h1 className='text-center'>Pokedex</h1>
+      <Navbar></Navbar>
+      <Searchbar></Searchbar>
     </div>
   );
 }

@@ -2,4 +2,39 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-size: 16px;
+}
+
+input[type='text']{
+  border: none;
+  outline: none;
+  height: 2rem;
+  width: 20vw;
+  box-shadow: 0px 1px 5px #000;
+  border-radius: 13px;
+  text-align: center;
+}
+
+input[type='text']:focus{
+  height: 2.2rem;
+  width: 20vw;
+  border: 3px solid rgba(96, 96, 99, 0.8);
+  box-shadow: 0 0;
+}
+
+.searchBtn{
+  border: none;
+  outline: none;
+  height: 2.1rem;
+  width: 8vw;
+  border-radius: 13px;
+  box-shadow: 0px 1px 5px #000;
+}
+
+.searchBtn:focus{
+  outline: none;
+}
+
+.searchBtn:active{
+  box-shadow: -1px -1px 3px #000;
 }
