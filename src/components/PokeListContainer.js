@@ -5,7 +5,7 @@ import PokemonItem from '../components/PokemonItem';
 
 function renderPokemonItems(pokemonData) {
     return (
-        <div className="PokeListContainer">
+        <div className="PokeListContainer d-flex flex-wrap">
             {
                 pokemonData.map(pokemon => (
                     <PokemonItem key={pokemon.data.id} pokemon={pokemon}></PokemonItem>
