@@ -18,19 +18,19 @@ function renderPokemonItems(pokemonData) {
 }
 
 function PokeListContainer(props) {
-    const { pokemonData, fetchPokemonData } = useContext(PokemonContext);
-    console.log(pokemonData)
+    const { pokemonDataList, fetchPokemonDataList } = useContext(PokemonContext);
+    console.log(pokemonDataList)
     return (
         <div className='PokeListContainer text-center'>
             <div className='text-center mb-5'>
                 {
-                    pokemonData.length === 0 && <img alt='loadingPokeball' className='loadingPokeball' src={LoadingPokeball}></img>
+                    pokemonDataList.length === 0 && <img alt='loadingPokeball' className='loadingPokeball' src={LoadingPokeball}></img>
                 }
                 {
-                    pokemonData.length !== 0 && renderPokemonItems(pokemonData)
+                    pokemonDataList.length !== 0 && renderPokemonItems(pokemonDataList)
                 }
             </div>
-            <button className='loadMorebtn btn btn-primary mb-5' onClick={() => fetchPokemonData(pokemonData.length + 1, pokemonData.length + 20)}>Load more Pokemon</button>
+            <button className='loadMorebtn btn btn-primary mb-5' onClick={() => fetchPokemonDataList(pokemonDataList.length + 1, pokemonDataList.length + 20)}>Load more Pokemon</button>
         </div>
     )
 }
