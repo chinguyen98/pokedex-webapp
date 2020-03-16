@@ -26,6 +26,10 @@ input[type='text']:focus{
   box-shadow: 0 0;
 }
 
+.loadMorebtn{
+  margin-left: -3.5rem;
+}
+
 .loadingPokeball{
   width: 20rem;
   height: 15rem;
@@ -92,7 +96,7 @@ input[type='text']:focus{
 }
 
 .PokeListContainer{
-  margin: 2rem 0 0 2.5rem ;
+  margin: 2rem 0 0 3.2rem ;
 }
 
 .pokemonType *{
