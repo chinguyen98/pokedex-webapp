@@ -5,7 +5,7 @@ import pokedexLogo from '../images/pokedexLogo.png';
 function Navbar(props) {
     return (
         <nav className='Navbar d-flex justify-content-center'>
-            <img src={pokedexLogo}></img>
+            <img src={pokedexLogo} alt='Pokedex'></img>
         </nav>
     );
 }
