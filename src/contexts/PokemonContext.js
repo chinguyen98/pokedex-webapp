@@ -18,7 +18,7 @@ export function PokemonProvider(props) {
     }
 
     useEffect(() => {
-        fetchPokemonData(1, 100);
+        fetchPokemonData(1, 20);
     }, [])
 
     return (
