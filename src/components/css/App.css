@@ -195,6 +195,24 @@ input[type='text']:focus{
   color: white;
 }
 
+.reloadBtn{
+  border: none;
+  outline: none;
+  height: 2.1rem;
+  width: 8vw;
+  border-radius: 13px;
+  box-shadow: 0px 1px 5px #000;
+  background-color: rgb(221, 219, 253);
+}
+
+.reloadBtn:focus{
+  outline: none;
+}
+
+.searchBtn:active{
+  box-shadow: -1px -1px 3px #000;
+}
+
 .searchBtn{
   border: none;
   outline: none;

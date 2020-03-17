@@ -7,14 +7,18 @@ export const PokemonContext = React.createContext();
 export function PokemonProvider(props) {
     const [pokemonDataList, setPokemonDataList] = useState([]);
     const [pokeNameList, setPokemonNameList] = useState(null);
+    const [isLoading, setLoading] = useState(false);
+    const [isShowMoreBtn, setShowMoreBtn] = useState(true);
 
-    async function fetchPokemonDataList(beginId, endId) {
+    async function fetchPokemonDataList(beginId, endId, callback = (firstArr, lastArr) => { return firstArr.concat(lastArr) }) {
         const urlList = [];
         for (let id = beginId; id <= endId; id++) {
             urlList.push(`https://pokeapi.co/api/v2/pokemon/${id}/`);
         };
         await Promise.all(urlList.map(url => axios.get(url)))
-            .then(data => setPokemonDataList(pokemonDataList.concat(data)))
+            .then(data => {
+                setPokemonDataList(callback(pokemonDataList, data))
+            })
             .catch(err => console.log(err));
     }
 
@@ -25,7 +29,15 @@ export function PokemonProvider(props) {
         fetchPokemonDataList(1, 20);
     }
 
-    async function displayDetailPokemonData(searchText) {
+    async function displayPokemonDataBySearch(searchText) {
+        if (searchText === '') {
+            setShowMoreBtn(false)
+            setPokemonDataList([{ data: { id: 'blankText' } }]);
+            return;
+        }
+        setLoading(true);
+        setShowMoreBtn(false);
+        setPokemonDataList([]);
         let listPokemon;
         if (isNaN(searchText)) {
             listPokemon = pokeNameList.filter(item => item.name.toLowerCase().includes(searchText.toLowerCase()))
@@ -34,12 +46,21 @@ export function PokemonProvider(props) {
             listPokemon = (searchText <= 0 || searchText > 964) ? [] : [`https://pokeapi.co/api/v2/pokemon/${pokeNameList[searchText - 1].name}`];
         }
         if (listPokemon.length === 0) {
-            setPokemonDataList([{ data: { id: -1 } }]);
+            setLoading(false)
+            setPokemonDataList([{ data: { id: 'NotFound' } }]);
         } else {
             await Promise.all(listPokemon.map(item => axios.get(item)))
-                .then(result => { setPokemonDataList(result) })
+                .then(result => {
+                    setLoading(false)
+                    setPokemonDataList(result);
+                })
                 .catch(err => console.log(err))
         }
+    }
+
+    async function reloadPokemonData() {
+        setShowMoreBtn(true)
+        await fetchPokemonDataList(1, 20, (firstArr, lastArr) => { return lastArr });
     }
 
     useEffect(() => {
@@ -49,7 +70,10 @@ export function PokemonProvider(props) {
     const contextValue = {
         pokemonDataList,
         fetchPokemonDataList,
-        displayDetailPokemonData,
+        displayPokemonDataBySearch,
+        isLoading,
+        isShowMoreBtn,
+        reloadPokemonData,
     }
 
     return (

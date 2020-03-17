@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import { PokemonContext } from '../contexts/PokemonContext'
 import PokemonItem from '../components/PokemonItem';
@@ -17,22 +17,36 @@ function renderPokemonItems(pokemonData) {
     )
 }
 
+function renderQuantity(pokemonDataList, isShowMoreBtn) {
+    if (pokemonDataList.length !== 0 && isShowMoreBtn === false && pokemonDataList[0].data.id !== 'NotFound' && pokemonDataList[0].data.id !== 'blankText') {
+        return (
+            <h2 className='mt-4'>{`${pokemonDataList.length} Pokemon(s) found!`}</h2>
+        )
+    }
+}
+
 function PokeListContainer(props) {
-    const { pokemonDataList, fetchPokemonDataList } = useContext(PokemonContext);
+    const { pokemonDataList, fetchPokemonDataList, isLoading, isShowMoreBtn } = useContext(PokemonContext);
     console.log(pokemonDataList)
     return (
         <div className='text-center mb-5'>
             {
-                pokemonDataList.length === 0 && <img alt='loadingPokeball' className='loadingPokeball mt-5' src={LoadingPokeball}></img>
+                renderQuantity(pokemonDataList, isShowMoreBtn)
             }
             {
-                pokemonDataList.length !== 0 && pokemonDataList[0].data.id === -1 && <h1 className='my-5'>No result!</h1>
+                (pokemonDataList.length === 0 || isLoading === true) && <img alt='loadingPokeball' className='loadingPokeball mt-5' src={LoadingPokeball}></img>
             }
             {
-                pokemonDataList.length !== 0 && pokemonDataList[0].data.id !== -1 && renderPokemonItems(pokemonDataList)
+                pokemonDataList.length !== 0 && pokemonDataList[0].data.id === 'NotFound' && <h1 className='my-5'>Can not found!</h1>
             }
             {
-                pokemonDataList.length !== 0 && <button className='loadMorebtn btn btn-primary my-5' onClick={() => fetchPokemonDataList(pokemonDataList.length + 1, pokemonDataList.length + 20)}>Load more Pokemon</button>
+                pokemonDataList.length !== 0 && pokemonDataList[0].data.id === 'blankText' && <h1 className='my-5'>Please enter Pokemon name or ID!</h1>
+            }
+            {
+                pokemonDataList.length !== 0 && pokemonDataList[0].data.id !== 'NotFound' && pokemonDataList[0].data.id !== 'blankText' && renderPokemonItems(pokemonDataList)
+            }
+            {
+                (pokemonDataList.length !== 0 && isShowMoreBtn === true) && <button className='loadMorebtn btn btn-primary my-5' onClick={() => fetchPokemonDataList(pokemonDataList.length + 1, pokemonDataList.length + 20)}>Load more Pokemon</button>
             }
 
         </div>
