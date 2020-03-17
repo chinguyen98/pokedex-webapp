@@ -26,9 +26,16 @@ function PokemonItem(props) {
         )
     }
 
+    function convertImageUrl(name) {
+        if (name.includes('-alola')) {
+            name = name.replace('-alola', '-alolan')
+        }
+        return `https://img.pokemondb.net/artwork/${name}.jpg`
+    }
+
     return (
         <div className="PokemonItem d-flex flex-column justify-content-center align-items-center">
-            <img src={`https://img.pokemondb.net/artwork/${pokemon.data.name}.jpg`} alt={pokemon.data.name}></img>
+            <img src={convertImageUrl(pokemon.data.name)} alt={pokemon.data.name}></img>
             <h2>{pokemon.data.name}</h2>
             {renderPokemonType(pokemon.data.types)}
             <span className='pokemonId'>#{changeId(pokemon.data.id)}</span>
