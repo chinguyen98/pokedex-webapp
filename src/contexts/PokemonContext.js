@@ -33,12 +33,11 @@ export function PokemonProvider(props) {
         } else {
             listPokemon = (searchText <= 0 || searchText > 964) ? [] : [`https://pokeapi.co/api/v2/pokemon/${pokeNameList[searchText - 1].name}`];
         }
-        console.log(listPokemon)
         if (listPokemon.length === 0) {
-            console.log('No result!')
+            setPokemonDataList([{ data: { id: -1 } }]);
         } else {
             await Promise.all(listPokemon.map(item => axios.get(item)))
-                .then(result => console.log(result))
+                .then(result => { setPokemonDataList(result) })
                 .catch(err => console.log(err))
         }
     }

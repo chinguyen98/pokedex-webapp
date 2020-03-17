@@ -26,9 +26,7 @@ input[type='text']:focus{
   box-shadow: 0 0;
 }
 
-.loadMorebtn{
-  margin-left: -3.5rem;
-}
+
 
 .loadingPokeball{
   width: 20rem;
@@ -41,8 +39,9 @@ input[type='text']:focus{
   top: 1rem;
   left: 1rem;
   font-size: 2rem;
-  z-index: 0;
-  color: rgb(131, 121, 121);
+  z-index: 999999;
+  color: rgba(131, 121, 121, 0.5);
+  font-weight: bold;
 }
 
 .PokemonItem{
@@ -57,16 +56,12 @@ input[type='text']:focus{
   overflow: hidden;
 }
 
-.PokemonItem:hover{
-  background-color: rgb(228, 224, 224);
-}
-
 .PokemonItem:hover .pokemonId{
-  color: white;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .PokemonItem:hover::before{
-  background: rgba(255, 253, 253, 0.5);
+  background: rgba(255, 253, 253, 0.8);
   left: 130%;
 }
 
@@ -96,7 +91,7 @@ input[type='text']:focus{
 }
 
 .PokeListContainer{
-  margin: 2rem 0 0 3.2rem ;
+  margin: 2rem 0 0 7rem ;
 }
 
 .pokemonType *{
@@ -216,4 +211,14 @@ input[type='text']:focus{
 
 .searchBtn:active{
   box-shadow: -1px -1px 3px #000;
+}
+
+.SearchResultContainer{
+  width: 84vw;
+  min-height: 350px;
+  position: absolute;
+  top: 180px;
+  left: 7%;
+  z-index: 99999;
+  background-color: rgba(0,212,255,0.5);
 }
