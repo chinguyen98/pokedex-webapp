@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 function PokemonItem(props) {
     const { pokemon } = props;
-    const [imgSrcStatus, setimgSrcStatus] = useState({ src: pokemon.data.sprites.front_default, errored: false })
 
     function changeId(id) {
         if (id < 10) {
