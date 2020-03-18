@@ -1,36 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { PokemonContext } from '../contexts/PokemonContext'
 
 function PokemonItem(props) {
     const { pokemon } = props;
-
-    function changeId(id) {
-        if (id < 10) {
-            return `00${id}`;
-        }
-        if (id < 100) {
-            return `0${id}`;
-        }
-        return id;
-    }
-
-    function renderPokemonType(types) {
-        return (
-            <div className='pokemonType d-flex mt-3'>
-                {
-                    types.map(item => (
-                        <span className={`mx-2 pokemonType__${item.type.name}`} key={item.type.name}>{item.type.name}</span>
-                    ))
-                }
-            </div>
-        )
-    }
-
-    function convertImageUrl(name) {
-        if (name.includes('-alola')) {
-            name = name.replace('-alola', '-alolan')
-        }
-        return `https://img.pokemondb.net/artwork/${name}.jpg`
-    }
+    const { changeId, renderPokemonType, convertImageUrl } = useContext(PokemonContext);
 
     return (
         <div className="PokemonItem d-flex flex-column justify-content-center align-items-center">

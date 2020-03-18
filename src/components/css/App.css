@@ -34,6 +34,10 @@ input[type='text']:focus{
   margin: 0 auto;
 }
 
+.PokemonDetailContainer h1{
+  text-transform: capitalize;
+}
+
 .pokemonId{
   position: absolute;
   top: 1rem;

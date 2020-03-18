@@ -15,7 +15,7 @@ function Searchbar(props) {
     }
 
     return (
-        <div className='container mt-5 d-flex justify-content-center align-items-center'>
+        <div className='container mt-3 d-flex justify-content-center align-items-center'>
             <Link to='/'>
                 <button className='reloadBtn mr-2' onClick={() => reloadPokemonData()}>Reload</button>
             </Link>

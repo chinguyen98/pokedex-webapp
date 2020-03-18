@@ -63,6 +63,35 @@ export function PokemonProvider(props) {
         await fetchPokemonDataList(1, 20, (firstArr, lastArr) => { return lastArr });
     }
 
+    function changeId(id) {
+        if (id < 10) {
+            return `00${id}`;
+        }
+        if (id < 100) {
+            return `0${id}`;
+        }
+        return id;
+    }
+
+    function renderPokemonType(types) {
+        return (
+            <div className='pokemonType d-flex mt-3'>
+                {
+                    types.map(item => (
+                        <span className={`mx-2 pokemonType__${item.type.name}`} key={item.type.name}>{item.type.name}</span>
+                    ))
+                }
+            </div>
+        )
+    }
+
+    function convertImageUrl(name) {
+        if (name.includes('-alola')) {
+            name = name.replace('-alola', '-alolan')
+        }
+        return `https://img.pokemondb.net/artwork/${name}.jpg`
+    }
+
     useEffect(() => {
         getPokemonData()
     }, [])
@@ -74,6 +103,9 @@ export function PokemonProvider(props) {
         isLoading,
         isShowMoreBtn,
         reloadPokemonData,
+        changeId,
+        renderPokemonType,
+        convertImageUrl
     }
 
     return (
