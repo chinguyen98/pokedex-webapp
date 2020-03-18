@@ -21,22 +21,23 @@ function PokemonDetailContainer() {
     function renderPokemonDetail() {
         console.log(pokemon)
         return (
-            <div className='PokemonDetailContainer mt-4 text-center'>
-                <h1>{pokemon.name}</h1>
+            <div className='PokemonDetailContainer mt-4 mx-5 p-3'>
+                <img className='PokemonDetailContainer__image' src={convertImageUrl(pokemon.name)}></img>
             </div>
         )
     }
 
     return (
-        <div className='text-center'>
+        <div>
             {
-                pokemon === null && <img alt='loadingPokeball' className='loadingPokeball mt-5' src={loadingPokeball}></img>
+                pokemon === null && <div className='text-center'><img alt='loadingPokeball' className='loadingPokeball mt-5' src={loadingPokeball}></img></div>
             }
             {
                 pokemon !== null && renderPokemonDetail()
             }
         </div>
     )
+
 }
 
 export default PokemonDetailContainer;

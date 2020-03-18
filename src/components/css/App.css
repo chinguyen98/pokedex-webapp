@@ -34,8 +34,19 @@ input[type='text']:focus{
   margin: 0 auto;
 }
 
+.PokemonDetailContainer{
+  width: 93vw;
+  height: auto;
+  background-color: #FFF;
+}
+
 .PokemonDetailContainer h1{
   text-transform: capitalize;
+}
+
+.PokemonDetailContainer img{
+  max-width: 100%;
+  height: auto;
 }
 
 .pokemonId{

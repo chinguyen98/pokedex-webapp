@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 
 import { PokemonContext } from '../contexts/PokemonContext'
 
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 function Searchbar(props) {
     const { displayPokemonDataBySearch, reloadPokemonData } = useContext(PokemonContext);
@@ -10,6 +10,7 @@ function Searchbar(props) {
 
     function searchByPressEnter(event) {
         if (event.key === 'Enter') {
+            props.history.push('/')
             displayPokemonDataBySearch(event.target.value);
         }
     }
@@ -27,4 +28,4 @@ function Searchbar(props) {
     )
 }
 
-export default Searchbar;
+export default withRouter(Searchbar);
