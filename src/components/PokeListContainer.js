@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { PokemonContext } from '../contexts/PokemonContext'
 import PokemonItem from '../components/PokemonItem';
 
@@ -10,7 +12,9 @@ function renderPokemonItems(pokemonData) {
         <div className="PokeListContainer d-flex flex-wrap">
             {
                 pokemonData.map(pokemon => (
-                    <PokemonItem key={pokemon.data.id} pokemon={pokemon}></PokemonItem>
+                    <Link key={pokemon.data.id} className='pokemonLink' to={`/pokemon/${pokemon.data.name}`} style={{ textDecoration: 'none' }}>
+                        <PokemonItem pokemon={pokemon}></PokemonItem>
+                    </Link>
                 ))
             }
         </div>
@@ -27,7 +31,6 @@ function renderQuantity(pokemonDataList, isShowMoreBtn) {
 
 function PokeListContainer(props) {
     const { pokemonDataList, fetchPokemonDataList, isLoading, isShowMoreBtn } = useContext(PokemonContext);
-    console.log(pokemonDataList)
     return (
         <div className='text-center mb-5'>
             {
