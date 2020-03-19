@@ -131,6 +131,18 @@ input[type='text']:focus{
   z-index: 888;
 }
 
+.PokemonIntroContainer{
+  width: 20rem;
+  height: auto;
+  text-align: justify;
+}
+
+.PokemonStatContainer{
+  width: 20rem;
+  height: auto;
+  text-align: justify;
+}
+
 .PokeListContainer{
   margin: 2rem 0 0 7rem ;
 }
