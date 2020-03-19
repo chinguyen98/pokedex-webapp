@@ -38,6 +38,7 @@ input[type='text']:focus{
   width: 93vw;
   height: auto;
   background-color: #FFF;
+  position: relative;
 }
 
 .PokemonDetailContainer h1{
@@ -47,6 +48,31 @@ input[type='text']:focus{
 .PokemonDetailContainer img{
   max-width: 100%;
   height: auto;
+}
+
+.PokemonDetailContainer__ID{
+  font-size: 2rem;
+}
+
+.PokemonDetailContainer__imageContainer{
+  position: relative;
+}
+
+.PokemonDetailContainer__imageContainer--height, .PokemonDetailContainer__imageContainer--weight{
+  font-size: 1.5rem;
+  border-radius: 50%;
+  position: absolute;
+  padding: 1rem;
+  font-weight: bold;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.PokemonDetailContainer__imageContainer--height{
+  left: -30%;
+}
+
+.PokemonDetailContainer__imageContainer--weight{
+  right: -30%;
 }
 
 .pokemonId{

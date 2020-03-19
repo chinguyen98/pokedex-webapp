@@ -74,7 +74,7 @@ export function PokemonProvider(props) {
 
     function renderPokemonType(types) {
         return (
-            <div className='pokemonType d-flex mt-3'>
+            <div className='pokemonType d-flex mt-1'>
                 {
                     types.map(item => (
                         <span className={`mx-2 pokemonType__${item.type.name}`} key={item.type.name}>{item.type.name}</span>
