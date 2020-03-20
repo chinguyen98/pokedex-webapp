@@ -137,10 +137,19 @@ input[type='text']:focus{
   text-align: justify;
 }
 
-.PokemonStatContainer{
+.PokemonOtherInfoContainer{
   width: 20rem;
   height: auto;
   text-align: justify;
+}
+
+.PokemonOtherInfoContainer__Tailing{
+  margin-left: 1rem;
+  text-transform: capitalize;
+}
+
+.PokemonOtherInfoContainer__Heading{
+  font-weight: bold;
 }
 
 .PokeListContainer{

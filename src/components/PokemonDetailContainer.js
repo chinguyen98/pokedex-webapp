@@ -32,38 +32,26 @@ function PokemonDetailContainer() {
             .catch(err => console.log(err));
     }
 
-    function getPokemonIntro(pokemonSpecies) {
-
-        let pokemonIntroInEnglish = pokemonSpecies.flavor_text_entries.filter(item => item.language.name === 'en');
-        return (
-            <p>
-                {pokemonIntroInEnglish[0].flavor_text}
-            </p>
-        )
-    }
-
     function renderPokemonDescription() {
-
+        let pokemonIntroInEnglish = pokemonSpecies.flavor_text_entries.filter(item => item.language.name === 'en');
         return (
             <div className='PokemonIntroContainer'>
                 <h1 className='text-center'>Intro</h1>
-                {
-                    pokemonSpecies === null && <div className='text-center'><img alt='loadingPokeball' className='loadingPokeball mt-5' src={loadingPokeball}></img></div>
-                }
-                {
-                    pokemonSpecies !== null && getPokemonIntro(pokemonSpecies)
-                }
+                <p>
+                    {pokemonIntroInEnglish[0].flavor_text}
+                </p>
             </div>
         )
     }
 
-    function getPokemonStat() {
+    function renderPokemonOtherInfo() {
         return (
-            <div className='PokemonStatContainer'>
-                <h1>Stat</h1>
-                <p>teur ad quis occaecat est dolor ut ea occaecat.
-
-                Anim ut sit aliqua eu nisi enim nisi ullamco duis culpa labore</p>
+            <div className='PokemonOtherInfoContainer'>
+                <h1 className='text-center'>Some Info</h1>
+                <div>
+                    <span className='PokemonOtherInfoContainer__Heading'>Growth rate: </span>
+                    <span className='PokemonOtherInfoContainer__Tailing'>{pokemonSpecies.growth_rate.name}</span>
+                </div>
             </div>
         )
     }
@@ -87,16 +75,9 @@ function PokemonDetailContainer() {
                         <img className='PokemonDetailContainer__image' src={convertImageUrl(pokemon.name)}></img>
                         <span className='PokemonDetailContainer__imageContainer--weight'>{parseFloat(pokemon.weight / 10)}kg</span>
                     </div>
-                    {getPokemonStat()}
+                    {renderPokemonOtherInfo()}
                 </div>
-                <div>
-                    {
-                        evolutionChainData === null && <div className='text-center'><img alt='loadingPokeball' className='loadingPokeball mt-5' src={loadingPokeball}></img></div>
-                    }
-                    {
-                        evolutionChainData !== null && <EvolutionChainContainer evolutionChainData={evolutionChainData}></EvolutionChainContainer>
-                    }
-                </div>
+                <EvolutionChainContainer evolutionChainData={evolutionChainData}></EvolutionChainContainer>
             </div>
         )
     }
@@ -104,10 +85,10 @@ function PokemonDetailContainer() {
     return (
         <div>
             {
-                pokemon === null && <div className='text-center'><img alt='loadingPokeball' className='loadingPokeball mt-5' src={loadingPokeball}></img></div>
+                (evolutionChainData === null || pokemon === null || pokemonSpecies === null) && <div className='text-center'><img alt='loadingPokeball' className='loadingPokeball mt-5' src={loadingPokeball}></img></div>
             }
             {
-                pokemon !== null && renderPokemonDetail()
+                (evolutionChainData !== null && pokemon !== null && pokemonSpecies !== null) && renderPokemonDetail()
             }
         </div>
     )
