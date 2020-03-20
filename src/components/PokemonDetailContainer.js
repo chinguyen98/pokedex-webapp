@@ -5,6 +5,7 @@ import axios from 'axios';
 import { PokemonContext } from '../contexts/PokemonContext'
 import loadingPokeball from '../images/loadingPokeball.gif';
 import EvolutionChainContainer from '../components/EvolutionChainContainer';
+import PokemonOtherInfo from '../components/PokemonOtherInfo';
 
 function PokemonDetailContainer() {
     const { pokemonName } = useParams();
@@ -35,23 +36,11 @@ function PokemonDetailContainer() {
     function renderPokemonDescription() {
         let pokemonIntroInEnglish = pokemonSpecies.flavor_text_entries.filter(item => item.language.name === 'en');
         return (
-            <div className='PokemonIntroContainer'>
+            <div className='PokemonIntroContainer pt-2'>
                 <h1 className='text-center'>Intro</h1>
                 <p>
                     {pokemonIntroInEnglish[0].flavor_text}
                 </p>
-            </div>
-        )
-    }
-
-    function renderPokemonOtherInfo() {
-        return (
-            <div className='PokemonOtherInfoContainer'>
-                <h1 className='text-center'>Some Info</h1>
-                <div>
-                    <span className='PokemonOtherInfoContainer__Heading'>Growth rate: </span>
-                    <span className='PokemonOtherInfoContainer__Tailing'>{pokemonSpecies.growth_rate.name}</span>
-                </div>
             </div>
         )
     }
@@ -75,7 +64,7 @@ function PokemonDetailContainer() {
                         <img className='PokemonDetailContainer__image' src={convertImageUrl(pokemon.name)}></img>
                         <span className='PokemonDetailContainer__imageContainer--weight'>{parseFloat(pokemon.weight / 10)}kg</span>
                     </div>
-                    {renderPokemonOtherInfo()}
+                    <PokemonOtherInfo pokemonSpecies={pokemonSpecies} pokemon={pokemon}></PokemonOtherInfo>
                 </div>
                 <EvolutionChainContainer evolutionChainData={evolutionChainData}></EvolutionChainContainer>
             </div>

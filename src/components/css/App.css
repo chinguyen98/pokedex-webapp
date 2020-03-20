@@ -135,12 +135,18 @@ input[type='text']:focus{
   width: 20rem;
   height: auto;
   text-align: justify;
+  border-top: 0.5em solid rgb(179, 172, 241);
 }
 
 .PokemonOtherInfoContainer{
   width: 20rem;
   height: auto;
   text-align: justify;
+  border-top: 0.5em solid rgb(179, 172, 241);
+}
+
+.PokemonOtherInfoContainer span{
+  font-size: 1.1rem;
 }
 
 .PokemonOtherInfoContainer__Tailing{
@@ -150,6 +156,24 @@ input[type='text']:focus{
 
 .PokemonOtherInfoContainer__Heading{
   font-weight: bold;
+}
+
+.PokemonOtherInfoContainer__male{
+  font-size: 1rem !important;
+  color: blue;
+  text-transform: none;
+}
+
+.PokemonOtherInfoContainer__female{
+  font-size: 1rem !important;
+  color: rgb(255, 0, 212);
+  text-transform: none;
+}
+
+.PokemonOtherInfoContainer__catchWithPokeball{
+  font-size: 0.78rem !important;
+  color: slategray;
+  text-transform: none;
 }
 
 .PokeListContainer{
