@@ -17,10 +17,17 @@ function PokemonOtherInfo(props) {
             </div>
             <div className='d-flex justify-content-between mt-1'>
                 <span className='PokemonOtherInfoContainer__Heading'>Gender Rate: </span>
-                <span className='PokemonOtherInfoContainer__Tailing'>
-                    <span className='PokemonOtherInfoContainer__male mr-2'>{`${100 - (pokemonSpecies.gender_rate * 100 / 8)}% male`}</span>
-                    <span className='PokemonOtherInfoContainer__female'>{`${(pokemonSpecies.gender_rate * 100 / 8)}% female`}</span>
-                </span>
+                {
+                    pokemonSpecies.gender_rate === -1 && <span>Genderless</span>
+                }
+                {
+                    pokemonSpecies.gender_rate !== -1 && (
+                        <span className='PokemonOtherInfoContainer__Tailing'>
+                            <span className='PokemonOtherInfoContainer__male mr-2'>{`${100 - (pokemonSpecies.gender_rate * 100 / 8)}% male`}</span>
+                            <span className='PokemonOtherInfoContainer__female'>{`${(pokemonSpecies.gender_rate * 100 / 8)}% female`}</span>
+                        </span>
+                    )
+                }
             </div>
             <div className='d-flex justify-content-between mt-1'>
                 <span className='PokemonOtherInfoContainer__Heading'>Catch Rate: </span>

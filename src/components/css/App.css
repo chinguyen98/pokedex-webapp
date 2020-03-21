@@ -24,9 +24,43 @@ input[type='text']:focus{
   width: 20vw;
   border: 3px solid rgba(96, 96, 99, 0.8);
   box-shadow: 0 0;
+
 }
 
+.BaseStatContainer{
+  width: 48em;
+  height: auto;
+  text-align: justify;
+  border-top: 0.5em solid rgb(197, 241, 172);
+}
 
+.BaseStatContainer table{
+  border-collapse: collapse;
+  width: 48em;
+  border-spacing: 2em 1em;
+}
+
+.BaseStatContainer table tr *{
+  font-size: 1.3em;
+  text-align: right;
+  text-transform: capitalize;
+}
+
+.BaseStatContainer table tr{
+  border-top: 0.5px solid rgb(155, 150, 150);
+  border-bottom: 0.5px solid rgb(155, 150, 150);
+}
+
+.BaseStatContainer__cell-barChart{
+  height: 1rem;
+  width: 20em;
+  margin-left: 3rem;
+}
+
+.BaseStatContainer__barChart{
+  border-radius: 0.15em;
+  height: 1rem;
+}
 
 .loadingPokeball{
   width: 7rem;
@@ -325,4 +359,11 @@ input[type='text']:focus{
   left: 7%;
   z-index: 99999;
   background-color: rgba(0,212,255,0.5);
+}
+
+.TypeDefenseContainer{
+  width: 35rem;
+  height: auto;
+  text-align: justify;
+  border-top: 0.5em solid rgb(197, 241, 172);
 }

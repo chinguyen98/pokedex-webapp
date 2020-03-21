@@ -6,6 +6,8 @@ import { PokemonContext } from '../contexts/PokemonContext'
 import loadingPokeball from '../images/loadingPokeball.gif';
 import EvolutionChainContainer from '../components/EvolutionChainContainer';
 import PokemonOtherInfo from '../components/PokemonOtherInfo';
+import BaseStatContainer from '../components/BaseStatContainer';
+import TypeDefenseContainer from '../components/TypeDefenseContainer';
 
 function PokemonDetailContainer() {
     const { pokemonName } = useParams();
@@ -61,10 +63,14 @@ function PokemonDetailContainer() {
                     {renderPokemonDescription()}
                     <div className='PokemonDetailContainer__imageContainer'>
                         <span className='PokemonDetailContainer__imageContainer--height'>{parseFloat(pokemon.height / 10) * 1.0}m</span>
-                        <img className='PokemonDetailContainer__image' src={convertImageUrl(pokemon.name)}></img>
+                        <img className='PokemonDetailContainer__image' src={convertImageUrl(pokemon.name)} alt={pokemon.name}></img>
                         <span className='PokemonDetailContainer__imageContainer--weight'>{parseFloat(pokemon.weight / 10)}kg</span>
                     </div>
                     <PokemonOtherInfo pokemonSpecies={pokemonSpecies} pokemon={pokemon}></PokemonOtherInfo>
+                </div>
+                <div className='d-flex justify-content-between my-5'>
+                    <BaseStatContainer pokemon={pokemon}></BaseStatContainer>
+                    <TypeDefenseContainer></TypeDefenseContainer>
                 </div>
                 <EvolutionChainContainer evolutionChainData={evolutionChainData}></EvolutionChainContainer>
             </div>
