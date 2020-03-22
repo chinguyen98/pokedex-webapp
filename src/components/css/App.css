@@ -377,7 +377,7 @@ input[type='text']:focus{
 
 .TypeDefenseContainer__Grid__Item{
   margin: 0 0.1rem;
-  height: 6rem;
+  height: 6.5rem;
 }
 
 .TypeDefenseContainer__Grid__Item *{
@@ -387,4 +387,9 @@ input[type='text']:focus{
   justify-content: center;
   align-items: center;
   border-radius: 0.4em;
+}
+
+.TypeDefenseContainer__Grid__CalcNum{
+  color: white;
+  margin-top: 0.5rem;
 }
