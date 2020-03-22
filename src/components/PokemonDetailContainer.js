@@ -16,7 +16,7 @@ function PokemonDetailContainer() {
     const [evolutionChainData, setEvolutionChainData] = useState(null);
     const [pokemonSpecies, setPokemonSpecies] = useState(null);
 
-    const { changeId, renderPokemonType, convertImageUrl } = useContext(PokemonContext);
+    const { changeId, renderPokemonType, convertImageUrl, listPokemonType } = useContext(PokemonContext);
 
     async function getPokemonDetail() {
         await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
@@ -70,7 +70,7 @@ function PokemonDetailContainer() {
                 </div>
                 <div className='d-flex justify-content-between my-5'>
                     <BaseStatContainer pokemon={pokemon}></BaseStatContainer>
-                    <TypeDefenseContainer pokemon={pokemon}></TypeDefenseContainer>
+                    <TypeDefenseContainer pokemon={pokemon} listPokemonType={listPokemonType}></TypeDefenseContainer>
                 </div>
                 <EvolutionChainContainer evolutionChainData={evolutionChainData}></EvolutionChainContainer>
             </div>
@@ -80,10 +80,12 @@ function PokemonDetailContainer() {
     return (
         <div>
             {
-                (evolutionChainData === null || pokemon === null || pokemonSpecies === null) && <div className='text-center'><img alt='loadingPokeball' className='loadingPokeball mt-5' src={loadingPokeball}></img></div>
+                (evolutionChainData === null || pokemon === null || pokemonSpecies === null || listPokemonType === null)
+                && <div className='text-center'><img alt='loadingPokeball' className='loadingPokeball mt-5' src={loadingPokeball}></img></div>
             }
             {
-                (evolutionChainData !== null && pokemon !== null && pokemonSpecies !== null) && renderPokemonDetail()
+                (evolutionChainData !== null && pokemon !== null && pokemonSpecies !== null && listPokemonType !== null)
+                && renderPokemonDetail()
             }
         </div>
     )

@@ -8,6 +8,7 @@ export function PokemonProvider(props) {
     const [pokeNameList, setPokemonNameList] = useState(null);
     const [isLoading, setLoading] = useState(false);
     const [isShowMoreBtn, setShowMoreBtn] = useState(true);
+    const [listPokemonType, setListPokemonType] = useState(null);
 
     async function fetchPokemonDataList(beginId, endId, callback = (firstArr, lastArr) => { return firstArr.concat(lastArr) }) {
         const urlList = [];
@@ -91,8 +92,19 @@ export function PokemonProvider(props) {
         return `https://img.pokemondb.net/artwork/${name}.jpg`
     }
 
+    async function getPokemonTypeData() {
+        let urlList = [];
+        for (let id = 1; id <= 18; id++) {
+            urlList.push(`https://pokeapi.co/api/v2/type/${id}`);
+        }
+        await Promise.all(urlList.map(item => axios.get(item))).then(result => {
+            setListPokemonType(result.map(item => item.data));
+        })
+    }
+
     useEffect(() => {
-        getPokemonData()
+        getPokemonData();
+        getPokemonTypeData()
     }, [])
 
     const contextValue = {
@@ -104,7 +116,8 @@ export function PokemonProvider(props) {
         reloadPokemonData,
         changeId,
         renderPokemonType,
-        convertImageUrl
+        convertImageUrl,
+        listPokemonType,
     }
 
     return (
