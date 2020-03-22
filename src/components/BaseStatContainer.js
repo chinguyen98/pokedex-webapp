@@ -10,7 +10,7 @@ function BaseStatContainer(props) {
     }, 0)
 
     function getBarChartWidthByMaxStat(pokemonStat) {
-        let percent = (pokemonStat.base_stat * 100 / 230).toFixed(2);
+        let percent = (pokemonStat.base_stat * 100 / 194).toFixed(2);
         if (percent >= 100)
             percent = 104;
         return percent;
@@ -18,19 +18,19 @@ function BaseStatContainer(props) {
 
     function renderColorBarChart(percent) {
         percent = parseInt(percent)
-        if (percent <= 15) {
+        if (percent <= 10) {
             return 'red';
         }
-        if (percent > 15 && percent <= 35) {
+        if (percent > 10 && percent <= 20) {
             return 'orange'
         }
-        if (percent > 35 && percent < 45) {
+        if (percent > 20 && percent < 45) {
             return 'yellow'
         }
-        if (percent >= 45 && percent <= 65) {
+        if (percent >= 45 && percent < 60) {
             return '#a0e515'
         }
-        if (percent > 65 && percent <= 80) {
+        if (percent >= 60 && percent <= 80) {
             return '#23cd5e'
         }
         if (percent > 80) {

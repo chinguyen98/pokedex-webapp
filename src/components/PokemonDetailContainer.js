@@ -70,7 +70,7 @@ function PokemonDetailContainer() {
                 </div>
                 <div className='d-flex justify-content-between my-5'>
                     <BaseStatContainer pokemon={pokemon}></BaseStatContainer>
-                    <TypeDefenseContainer></TypeDefenseContainer>
+                    <TypeDefenseContainer pokemon={pokemon}></TypeDefenseContainer>
                 </div>
                 <EvolutionChainContainer evolutionChainData={evolutionChainData}></EvolutionChainContainer>
             </div>
