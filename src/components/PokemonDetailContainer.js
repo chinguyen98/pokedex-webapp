@@ -72,7 +72,7 @@ function PokemonDetailContainer() {
                     <BaseStatContainer pokemon={pokemon}></BaseStatContainer>
                     <TypeDefenseContainer pokemon={pokemon} listPokemonType={listPokemonType}></TypeDefenseContainer>
                 </div>
-                <EvolutionChainContainer evolutionChainData={evolutionChainData}></EvolutionChainContainer>
+                <EvolutionChainContainer convertImageUrl={convertImageUrl} evolutionChainData={evolutionChainData}></EvolutionChainContainer>
             </div>
         )
     }
