@@ -63,12 +63,13 @@ input[type='text']:focus{
 }
 
 .EvolutionChart__Item img{
-  width: 5em;
-  height: 5em;
+  width: 5rem;
+  height: 5rem;
 }
 
-.EvolutionChart__Item p{
+.EvolutionChart__Item span{
   text-transform: capitalize;
+  font-size: 1em;
 }
 
 .EvolutionChart__Item__types{

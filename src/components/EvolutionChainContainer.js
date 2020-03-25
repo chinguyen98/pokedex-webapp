@@ -49,23 +49,40 @@ function EvolutionChainContainer(props) {
         return idAndType;
     }
 
+    function renderEvolCondition(item, index) {
+        return (
+            <div className='d-flex flex-column justify-content-center align-items-center mr-5'>
+                <span className='EvolutionChart__Arrow ' style={{ fontSize: '2rem' }}>&#10230;</span>
+                {
+                    item.minLevel !== null && <span>(Level {item.minLevel})</span>
+                }
+                {
+                    item.item !== null && <span>{`(use ${item.item.name})`}</span>
+                }
+            </div>
+        )
+    }
+
     function renderChainItem(item, index) {
         return (
-            <div key={index} className='EvolutionChart__Item'>
+            <div key={index} className='EvolutionChart__Item d-flex flex-column justify-content-center align-items-center'>
                 {
                     Array.isArray(item) &&
                     <div>
 
                         {
                             item.map((subitem, index) => (
-                                <div key={subitem.pokemonName} className='d-flex flex-column justity-content-center align-items-center mb-5'>
-                                    <p>{`#${getPokemonIdAndType(subitem.pokemonName).id}`}</p>
-                                    <img src={convertImageUrl(subitem.pokemonName)} alt={subitem.pokemonName}></img>
-                                    <p className='mt-2'>{subitem.pokemonName}</p>
-                                    <div className='d-flex flex-row'>
-                                        {getPokemonIdAndType(subitem.pokemonName).types.map(item => <div className={`mx-1 text-center  pokemonType__${item.type.name} EvolutionChart__Item__types`} key={item.type.name}>
-                                            {item.type.name}
-                                        </div>)}
+                                <div key={subitem.pokemonName} className='d-flex align-items-center justify-content-center'>
+                                    {renderEvolCondition(subitem, index)}
+                                    <div className='d-flex flex-column justity-content-center align-items-center mb-5'>
+                                        <img src={convertImageUrl(subitem.pokemonName)} alt={subitem.pokemonName}></img>
+                                        <span className='mt-2'>{`#${getPokemonIdAndType(subitem.pokemonName).id}`}</span>
+                                        <span className='my-2'>{subitem.pokemonName}</span>
+                                        <div className='d-flex flex-row'>
+                                            {getPokemonIdAndType(subitem.pokemonName).types.map(item => <div className={`mx-1 text-center  pokemonType__${item.type.name} EvolutionChart__Item__types`} key={item.type.name}>
+                                                {item.type.name}
+                                            </div>)}
+                                        </div>
                                     </div>
                                 </div>
                             ))
@@ -73,17 +90,23 @@ function EvolutionChainContainer(props) {
                     </div>
                 }
                 {
-                    !Array.isArray(item) &&
-                    <div className='d-flex flex-column justity-content-center align-items-center'>
-                        <p>{`#${getPokemonIdAndType(item.pokemonName).id}`}</p>
-                        <img src={convertImageUrl(item.pokemonName)} alt={item.pokemonName}></img>
-                        <p>{item.pokemonName}</p>
-                        <div className='d-flex flex-row'>
-                            {getPokemonIdAndType(item.pokemonName).types.map(item => <div className={`mx-1 text-center  pokemonType__${item.type.name} EvolutionChart__Item__types`} key={item.type.name}>
-                                {item.type.name}
-                            </div>)}
+                    !Array.isArray(item) && (
+                        <div className='d-flex align-items-center'>
+                            {
+                                index !== 0 && renderEvolCondition(item, index)
+                            }
+                            <div className='d-flex flex-column justity-content-center align-items-center'>
+                                <img src={convertImageUrl(item.pokemonName)} alt={item.pokemonName}></img>
+                                <span className='mt-2'>{`#${getPokemonIdAndType(item.pokemonName).id}`}</span>
+                                <span className='my-2'>{item.pokemonName}</span>
+                                <div className='d-flex flex-row'>
+                                    {getPokemonIdAndType(item.pokemonName).types.map(item => <div className={`mx-1 text-center  pokemonType__${item.type.name} EvolutionChart__Item__types`} key={item.type.name}>
+                                        {item.type.name}
+                                    </div>)}
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    )
                 }
             </div>
         )
