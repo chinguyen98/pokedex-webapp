@@ -17,7 +17,8 @@ function EvolutionChainContainer(props) {
                 'minLevel': !evolutionData['evolution_details'][0] ? 1 : evolutionData['evolution_details'][0].min_level,
                 'trigger': !evolutionData['evolution_details'][0] ? null : evolutionData['evolution_details'][0].trigger.name,
                 'min_happiness': !evolutionData['evolution_details'][0] ? null : evolutionData['evolution_details'][0].min_happiness,
-                'item': !evolutionData['evolution_details'][0] ? null : evolutionData['evolution_details'][0].item
+                'item': !evolutionData['evolution_details'][0] ? null : evolutionData['evolution_details'][0].item,
+                'gender': !evolutionData['evolution_details'][0] ? null : evolutionData['evolution_details'][0].gender,
             });
 
             if (numberOfEvolution > 1) {
@@ -28,7 +29,8 @@ function EvolutionChainContainer(props) {
                         'minLevel': !evolutionData.evolves_to[i]['evolution_details'][0] ? 1 : evolutionData.evolves_to[i]['evolution_details'][0].min_level,
                         'trigger': !evolutionData.evolves_to[i]['evolution_details'][0] ? null : evolutionData.evolves_to[i]['evolution_details'][0].trigger.name,
                         'min_happiness': !evolutionData.evolves_to[i]['evolution_details'][0] ? null : evolutionData.evolves_to[i]['evolution_details'][0].min_happiness,
-                        'item': !evolutionData.evolves_to[i]['evolution_details'][0] ? null : evolutionData.evolves_to[i]['evolution_details'][0].item
+                        'item': !evolutionData.evolves_to[i]['evolution_details'][0] ? null : evolutionData.evolves_to[i]['evolution_details'][0].item,
+                        'gender': !evolutionData.evolves_to[i]['evolution_details'][0] ? null : evolutionData.evolves_to[i]['evolution_details'][0].gender
                     })
                 }
                 evolutionChain.push(extraEvo);
@@ -53,12 +55,18 @@ function EvolutionChainContainer(props) {
         return (
             <div className='d-flex flex-column justify-content-center align-items-center mr-5'>
                 <span className='EvolutionChart__Arrow ' style={{ fontSize: '2rem' }}>&#10230;</span>
-                {
-                    item.minLevel !== null && <span>(Level {item.minLevel})</span>
-                }
-                {
-                    item.item !== null && <span>{`(use ${item.item.name})`}</span>
-                }
+                <span>(
+                    {
+                        item.minLevel !== null && <span style={{ textTransform: 'none' }}>Level {item.minLevel}</span>
+                    }
+                    {
+                        item.item !== null && <span style={{ textTransform: 'none' }}>{`use ${item.item.name}`}</span>
+                    }
+                    {
+                        item.gender !== null && <span style={{ textTransform: 'none' }}>{` on ${item.gender === 2 ? 'male' : 'female'}`}</span>
+                    }
+                )
+                </span>
             </div>
         )
     }
@@ -68,8 +76,7 @@ function EvolutionChainContainer(props) {
             <div key={index} className='EvolutionChart__Item d-flex flex-column justify-content-center align-items-center'>
                 {
                     Array.isArray(item) &&
-                    <div>
-
+                    <div className='d-flex flex-column justity-content-end align-items-end'>
                         {
                             item.map((subitem, index) => (
                                 <div key={subitem.pokemonName} className='d-flex align-items-center justify-content-center'>

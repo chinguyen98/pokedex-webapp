@@ -54,6 +54,9 @@ function PokemonDetailContainer() {
     function renderPokemonDetail() {
         return (
             <div className='PokemonDetailContainer mt-4 mx-5 p-2'>
+                {
+                    console.log(pokemonSpecies)
+                } 
                 <div className='d-flex flex-column align-items-center'>
                     <span className='PokemonDetailContainer__ID'>#{changeId(pokemon.id)}</span>
                     <h1 className='text-center'>{pokemon.name}</h1>
